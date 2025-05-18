@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="margin-top: 40px;">
+    <h2 class="text-center">Confirm Your Booking</h2>
+    <div class="card mt-4 p-4">
+        <h4>Movie: {{ showtime.movie.title }}</h4>
+        <p><strong>Theater:</strong> {{ showtime.theater.name }}</p>
+        <p><strong>Screen:</strong> {{ showtime.screen_number }}</p>
+        <p><strong>Showtime:</strong> {{ showtime.show_time }}</p>
+
+        <hr>
+
+        <h5>Tickets:</h5>
+        <ul>
+            {% for ticket in tickets %}
+                <li>Seat: {{ ticket }}</li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+
+        <p><strong>Ticket Price:</strong> ₹{{ total_amount }}</p>
+        <p><strong>Convenience Fee:</strong> ₹{{ convenience_fee }}</p>
+        <h4><strong>Total Amount:</strong> ₹{{ sub_total }}</h4>
+
+            <form method="post" action="{% url 'payment_page' booking.id %}">
+
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success" id="checkout-button">Proceed to Payment</button>
+                
+            </form>
+    </div>
+</div>
+{% endblock %}

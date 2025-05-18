@@ -1,0 +1,109 @@
+<!-- <style>
+
+    .calender{
+        height: 200px;
+        width: 900px;
+        position: relative;
+        left: 20px;
+        
+        display: flex;
+        gap: 20px;
+    }
+    .day{
+        height: 150px;
+        border: 1px solid #333;
+        position: relative;
+        top: 30px;
+        border-radius: 8px;
+
+        
+    }
+    .day:hover{
+        background-color: #E50914;
+        /* color: white; */
+        transition: ease-in-out 0.2s;
+        cursor: pointer;
+    }
+    .day-name{
+        position: relative;
+        top: 25px;
+        left: 30px;
+        
+        
+    }
+    .day-number{
+        position: relative;
+        top: 55px;
+       
+       
+    }
+    .month{
+        position: relative;
+        top: 90px;
+        right: 30px
+    }
+    .today{
+        background-color: #E50914;
+    }
+
+</style>
+
+<div class="calender">
+    {% for day in week %}
+    <div class="day {% if day.date == today %} today{% endif %}">
+        <span class="day-name"><b>{{day.name}}</b></span>
+        <span class="day-number">{{day.day}}</span>
+        <span class="month">{{day.month}}</span>
+
+    </div>
+    {% endfor %}
+</div> -->
+
+
+
+
+<style>
+    
+    .date-tab {
+    background-color: #1f1f1f;
+    border: 1px solid #444;
+    color: #ffda77;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 60px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.date-tab:hover {
+    background-color: #ff2e63;
+    color: white;
+}
+.date-tab.active-date {
+    background-color: #ff2e63;
+    color: white;
+    border-color: #ff2e63;
+}
+
+    
+</style>
+
+</style>
+
+
+<div style="display: flex; gap: 10px; padding: 20px 30px; flex-wrap: wrap;">
+    {% for day in week %}
+
+
+
+        <div class="date-tab {% if day.date == today %}active-date{% endif %}">
+            <div style="font-weight: bold;">{{ day.name }}</div>
+            <div>{{ day.day }} <br>{{ day.month }}</div>
+        </div>
+   
+    {% endfor %}
+
+   
+    
+</div>

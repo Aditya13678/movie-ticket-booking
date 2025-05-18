@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  
+     .navbar{
+        height: 10vh;
+        background-color: whitesmoke;
+        
+    }
+
+    .btn{
+        background-color: black;
+        color: white;
+    }
+
+    .p1{
+        border: 2px solid black;
+        height: 650px;
+        width: 490px;
+        margin: 10px;
+        border-radius: 15px;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+        background-color: white;
+        box-shadow: 10px 10px 20px black;
+       
+    }
+    .p2{
+        /* border: 2px solid black; */
+        height: 690px;
+        width: 900px;
+        margin: 10px;
+        
+    }
+    .p{
+
+      
+        height: 710px;
+        width: 1450px;
+       
+        display: flex;
+        background-color: rgb(239, 237, 237);
+    }
+
+    h1{
+      position: relative;
+      top: 60px;
+      
+      /* color: white; */
+      
+    }
+    img{
+      position: relative;
+      top: 100px;
+      left: 100px;
+      border-radius: 20px;
+      box-shadow: 10px 10px 20px black;
+    }
+    
+
+    .p21{
+      /* border: 2px solid black; */
+      height: 50px;
+      width: 900px;
+      position: relative;
+      top: 10px;
+      display: flex;  
+      
+      
+    }
+    .p22{
+      /* border: 2px solid black; */
+      height: 50px;
+      width: 900px;
+      position: relative;
+      top: 20px;
+      display: flex;
+      
+    }
+    .p23{
+      /* border: 2px solid black; */
+      height: 200px;
+      width: 900px;
+      position: relative;
+      top: 30px;
+      display: flex;
+  
+    }
+    .p24{
+      /* border: 2px solid black; */
+      height: 150px;
+      width: 900px;
+      position: relative;
+      top: 40px;
+      display: flex;
+      ;
+    }
+    .p25{
+      /* border: 2px solid black; */
+      height: 50px;
+      width: 900px;
+      position: relative;
+      top: 50px;
+      display: flex;
+    
+    }
+    .p26{
+      /* border: 2px solid black; */
+      height: 50px;
+      width: 900px;
+      position: relative;
+      top: 60px;
+      display: flex;
+    }
+
+    .p211{
+      border: 2px solid black;
+      height: auto;
+      width: 160px;
+      display: flex;
+      align-items: center;
+      border-radius: 15px;
+      justify-content: center;
+      background-color: white;
+      box-shadow: 10px 10px 10px rgb(170, 167, 167);
+      
+    }
+    .p212{
+      border: 2px solid black;
+      height: auto;
+      width: 700px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 15px;
+      border-radius: 15px;
+      background-color: white;
+      box-shadow: 10px 10px 20px rgb(170, 167, 167);
+      
+     
+    }
+
+    button{
+      border-radius: 20px;
+      background-color: black;
+      color: white;
+      /* height: 50px; */
+    }
+</style>
+
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Book My Show</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Help
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Contact</a></li>
+              <li><a class="dropdown-item" href="#"></a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Any Issue?</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!-- {{name.title}} -->
+  
+  
+  
+  <div class="p">
+    <div class="p1">
+
+      <h1>{{name.title}}</h1>
+      
+      
+      <img src="{{name.image}}" alt="" height="400px" width="300px"> 
+    </div>
+    
+    <div class="p2">
+      
+      <div class="p21">
+        <div class="p211">
+          <h2>Genre:</h2>
+          
+        </div>
+        <div class="p212">
+          
+          <p id="gen">{{name.genre}}</p>
+        </div>
+  </div>
+  <div class="p22">
+    <div class="p211">
+
+      <h2>Language:</h2> 
+    </div>
+    <div class="p212">
+      <p>{{name.language}}</p>
+
+    </div>
+  </div>
+  <div class="p23">
+    <div class="p211">
+      <h2>Synopsis:</h2>
+
+    </div>
+    <div class="p212">
+      <p>{{name.synopsis}}</p>
+
+    </div>
+    </div>
+  <div class="p24">
+    <div class="p211">
+
+      <h2>Cast:</h2>
+    </div>
+    <div class="p212">
+
+      <p>{{name.cast}}</p>
+    </div>
+    </div>
+  <div class="p25">
+    <div class="p211">
+
+      <h2>Duration:</h2> 
+    </div>
+    <div class="p212">
+      <p>{{name.duration_minutes}}</p>
+
+    </div>
+  </div>
+  <div class="p26"><a href="{{name.thriller_url}}"><button>Watch trailler</button></a></div>
+  
+
+</div>
+</div>
+
+
+
+{% endblock %}

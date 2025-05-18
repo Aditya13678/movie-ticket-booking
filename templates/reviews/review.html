@@ -1,0 +1,93 @@
+
+<style>
+
+    #parent{
+        height: auto;
+        width: 1200px;
+        
+        position: relative;
+        left: 120px;
+        top: 50px;
+    }
+    
+    #child{
+        border-top: 1.5px solid rgb(196, 194, 194);
+        /* border: 2px solid black; */
+        height: 80%;
+        width: 1200px;
+        position: relative;
+        top: 10px;
+        display: flex;
+
+    }
+
+    #grandchild{
+        height: auto;
+        width: 300px;
+        border: 1px solid rgb(196, 194, 194);
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    #u{
+        position: relative;
+        left: 20px;
+        top: 5px;
+    }
+    #r{
+        position: relative;
+        left: 20px;
+        top: 8px;
+    }
+    #r1{
+        position: relative;
+        left: 20px;
+    }
+
+    #rev{
+        position: relative;
+        
+      
+        
+    }
+    button{
+        height: 50px;
+        width: 150px;
+        border-radius: 5px;
+    }
+
+
+
+</style>
+
+
+
+
+
+
+
+
+<div id="parent">
+
+    <h3>Reviews</h3>
+
+    <a id="rev" href="{% url 'submit_review' name.slug %}">
+        <button>Write a Review</button>
+      </a>
+
+    <div id="child">
+        
+
+        {% for review in reviews %}
+
+        <div id="grandchild">
+            <strong id="u">{{review.user_id}}</strong>
+            <p id="r">{{review.review_text}}</p><p id="r1">⭐️ {{ratings|floatformat:1}}/10</p>
+        </div>
+        
+        {% endfor %}
+        
+
+    </div>
+
+</div>

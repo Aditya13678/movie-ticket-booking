@@ -1,0 +1,336 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">Book My Show</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link" aria-current="page" href="{% url 'your_orders' %}">Your Orders</a>
+          </li>
+          
+          
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+<h1 class="title">Select Your Seats</h1>
+
+<div class="container">
+    <div class="seat-layout">
+        <!-- Seat Layout Code (unchanged) -->
+
+        <div class="section-label">
+            VIP <span class="price-tag">₹200</span>
+        </div>
+        {% for row_label, seats in seat_rows.items %}
+            {% if row_label in 'ABC' %}
+                <div class="seat-row">
+                    <strong class="row-label">{{ row_label }}</strong>
+                    {% for seat in seats %}
+                    <div class="seat available" data-seat-number="{{ seat.seat_number }}" data-row="{{ row_label }}" data-category="vip" data-price="200" data-id="{{ seat.id }}">
+                        {{ seat.seat_number }}
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="section-label">
+            Gold <span class="price-tag">₹150</span>
+        </div>
+        {% for row_label, seats in seat_rows.items %}
+            {% if row_label in 'DEF' %}
+                <div class="seat-row">
+                    <strong class="row-label">{{ row_label }}</strong>
+                    {% for seat in seats %}
+                    <div class="seat available" data-seat-number="{{ seat.seat_number }}" data-row="{{ row_label }}" data-category="gold" data-price="150" data-id="{{ seat.id }}">
+                        {{ seat.seat_number }}
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="section-label">
+            Silver <span class="price-tag">₹100</span>
+        </div>
+        {% for row_label, seats in seat_rows.items %}
+            {% if row_label not in 'ABCDEF' %}
+                <div class="seat-row">
+                    <strong class="row-label">{{ row_label }}</strong>
+                    {% for seat in seats %}
+                    <div class="seat available" data-seat-number="{{ seat.seat_number }}" data-row="{{ row_label }}" data-category="silver" data-price="100" data-id="{{ seat.id }}">
+                        {{ seat.seat_number }}
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        <div class="screen">SCREEN</div>
+    </div>
+
+    <form id="booking-form" action="{% url 'book_ticket' showtime.id %}" method="post">
+    {% csrf_token %}
+    <!-- Show Selected Seats and Total Price in a proper box on the right side -->
+    <div class="selection-summary">
+        <div class="total-box">
+            <h2>Selected Seats:</h2>
+            <div id="vip-seats">
+                <strong>VIP: </strong><span id="vip-seats-list">None</span>
+            </div>
+            <div id="gold-seats">
+                <strong>Gold: </strong><span id="gold-seats-list">None</span>
+            </div>
+            <div id="silver-seats">
+                <strong>Silver: </strong><span id="silver-seats-list">None</span>
+            </div>
+            <h2>Total Price: ₹<span id="total-price">0</span></h2>
+            <button type="submit" class="checkout-btn">Proceed to Payment</button>
+        </div>
+    </div>
+
+    <!-- Hidden field to store selected seats -->
+    <input type="hidden" name="selectedSeats" id="selectedSeats">
+    <input type="hidden" name="total_amount" id="totalAmount">
+</form>
+</div>
+
+
+<style>
+
+body {
+        background-color: #1c1c1c;
+        color: #e6e6e6;
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+    }
+
+    .navbar {
+        height: 10vh;
+        background: linear-gradient(to right, #1c1c1c, #121212);
+        color: #f1f1f1;
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+        padding-left: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .btn {
+        background-color: #E50914;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #B00610;
+    }
+
+    .navbar-brand {
+        color: white;
+    }
+
+    .nav-link{
+        color: white;
+    }
+
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+       
+    }
+    .seat-layout {
+        flex: 0 0 70%;  /* 70% width for the seat layout */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        /* border: 1px solid white; */
+    }
+    .selection-summary {
+        flex: 0 0 25%;  /* 25% width for the selected seat box */
+        position: sticky;
+        top: 20px;
+        margin-left: 20px;
+    }
+    .seat-row {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .row-label {
+        width: 20px;
+    }
+    .seat {
+        width: 30px;
+        height: 30px;
+        /* background: #4CAF50; */
+        border: 1px solid #4CAF50;
+        color: #4CAF50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        user-select: none;
+        transition: background 0.3s;
+    }
+    /* Booked Seats */
+    .seat.booked {
+        background: #999 !important;
+        cursor: not-allowed;
+    }
+    /* Selected Seats */
+    .seat.selected {
+        background: #4CAF50 !important;
+        color: white;
+    }
+    .section-label {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 30px;
+        text-align: center;
+        color: #ffda77;
+    }
+    .price-tag {
+        font-size: 14px;
+        font-weight: normal;
+        color: white;
+        margin-left: 10px;
+    }
+
+    /* Make the screen visible */
+    .screen {
+        /* position: relative;
+        top: 100px; */
+        background: #333;
+        color: white;
+        width: 70%;  /* Adjust screen width */
+        height: 50px;  /* Height of the screen block */
+        text-align: center;
+        line-height: 50px;
+        font-weight: bold;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+
+    .total-box {
+        position: relative;
+        top: 150px;
+        color: black;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        padding: 20px;
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .total-box h2 {
+        margin: 10px 0;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .checkout-btn {
+        background-color:  rgb(231, 28, 36);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-top: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background 0.3s;
+    }
+    .checkout-btn:hover {
+        background-color: white;
+        color:  rgb(231, 28, 36);
+        border: 1px solid  rgb(231, 28, 36);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const seats = document.querySelectorAll('.seat.available');
+        const vipSeatsList = document.getElementById('vip-seats-list');
+        const goldSeatsList = document.getElementById('gold-seats-list');
+        const silverSeatsList = document.getElementById('silver-seats-list');
+        const totalPriceSpan = document.getElementById('total-price');
+        const selectedSeatsInput = document.getElementById('selectedSeats');
+        const totalAmountInput = document.getElementById('totalAmount');
+    
+        let selectedSeats = {
+            vip: [],
+            gold: [],
+            silver: []
+        };
+    
+        let finalSelectedSeats = [];  // for form submission (with key and id)
+        let totalPrice = 0;
+    
+        seats.forEach(seat => {
+            seat.addEventListener('click', function () {
+                const seatNumber = this.dataset.seatNumber;
+                const rowLabel = this.dataset.row;
+                const seatPrice = parseInt(this.dataset.price);
+                const seatCategory = this.dataset.category;
+                const seatId = this.dataset.id;
+                const seatLabel = `${rowLabel}${seatNumber}`;
+    
+                const seatIndex = selectedSeats[seatCategory].indexOf(seatLabel);
+    
+                if (this.classList.contains('selected')) {
+                    // Deselect
+                    this.classList.remove('selected');
+                    selectedSeats[seatCategory].splice(seatIndex, 1);
+                    finalSelectedSeats = finalSelectedSeats.filter(s => s.id !== seatId);
+                    totalPrice -= seatPrice;
+                } else {
+                    // Select
+                    this.classList.add('selected');
+                    selectedSeats[seatCategory].push(seatLabel);
+                    finalSelectedSeats.push({ key: seatLabel, id: seatId });
+                    totalPrice += seatPrice;
+                }
+    
+                // Update display
+                vipSeatsList.textContent = selectedSeats.vip.length ? selectedSeats.vip.join(', ') : 'None';
+                goldSeatsList.textContent = selectedSeats.gold.length ? selectedSeats.gold.join(', ') : 'None';
+                silverSeatsList.textContent = selectedSeats.silver.length ? selectedSeats.silver.join(', ') : 'None';
+                totalPriceSpan.textContent = totalPrice;
+    
+                // Update hidden inputs
+                selectedSeatsInput.value = JSON.stringify(finalSelectedSeats);
+                totalAmountInput.value = totalPrice;
+            });
+        });
+    });
+    </script>
+    
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .container{
+        height: 400px;
+        width: 500px;
+        position: relative;
+        top: 150px;
+    }
+</style>
+<div class="container">
+    <div class="card p-5 shadow-lg">
+        <img src="{% static 'img/success.webp' %}" alt="Success" style="width: 100px; margin-bottom: 20px;">
+        <h2 class="text-success">Payment Successful!</h2>
+        <p class="lead">Your booking has been confirmed.</p>
+
+        <hr class="my-4">
+
+        <!-- <div class="text-start mt-4">
+            <h4>Booking Summary</h4>
+            <p><strong>Movie:</strong> {{ booking.id }}</p>
+            <p><strong>Theater:</strong> {{ booking.showtime.theater.name }}</p>
+            <p><strong>Screen:</strong> {{ booking.showtime.screen_number }}</p>
+            <p><strong>Showtime:</strong> {{ booking.showtime.show_time }}</p>
+
+            {% if vip_tickets %}
+                <p><strong>(VIP):</strong> {{ vip_tickets|join:", " }}</p>
+            {% endif %}
+            {% if gold_tickets %}
+                <p><strong>(Gold):</strong> {{ gold_tickets|join:", " }}</p>
+            {% endif %}
+            {% if silver_tickets %}
+                <p><strong>(Silver):</strong> {{ silver_tickets|join:", " }}</p>
+            {% endif %}
+
+            <p><strong>Total Paid:</strong> ₹{{ booking.total_amount }}</p>
+        </div> -->
+
+        <a href="{% url 'home' %}" class="btn btn-primary mt-4">Go to Home</a>
+       
+    </div>
+</div>
+{% endblock %}

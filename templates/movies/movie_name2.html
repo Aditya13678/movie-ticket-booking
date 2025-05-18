@@ -1,0 +1,425 @@
+{% extends 'base.html'%}
+
+{% load static %}
+
+{% block content %}
+
+<!-- <style>
+
+  
+
+    .navbar{
+        height: 10vh;
+        background-color: rgb(216, 212, 212);
+        color: white;
+        
+    }
+    
+    .btn{
+        background-color: black;
+        color: white;
+
+        }
+
+    .header{
+       
+        height: 400px;
+        width: 100vw;
+        display: flex;
+    }
+
+    .hc1{
+        height: 400px;
+        width: 30%;
+   
+        background-color: whitesmoke;
+        border-right: 2px solid rgb(196, 194, 194);
+        
+    }
+
+    .hc2{
+        height: 400px;
+        width: 70%;
+       
+        
+        background-color: whitesmoke;
+    }
+
+    #i{
+        position: relative;
+        top: 40px;
+        left: 120px;
+        border-radius: 15px;
+    }
+
+    #title{
+        position: relative;
+        top: 70px;
+        left: 20px;
+    }
+
+    ul{
+        display: flex;
+        position: relative;
+        top: 120px;
+        
+    }
+
+    #l2{
+        position: relative;
+        left: 30px;
+    }
+
+    #l3{
+        position: relative;
+        left: 70px;
+    }
+
+    .hc3{
+        height: 30px;
+        width: 80px;
+        border: 1px solid black;
+        position: relative;
+        top: 40px;
+        left: 20px;
+        display: flex;
+        justify-content: center;
+        border-radius: 5px;
+        
+    }
+
+    #trailer{
+       
+        position: relative;
+        top: 100px;
+        left: 20px;
+        
+        
+    }
+
+    #b{
+        height: 50px;
+        width: 150px;
+        border-radius: 5px;
+        
+    }
+
+    .syno{
+        height: 170px;
+        width: 1200px;
+      
+        border-bottom: 2px solid rgb(196, 194, 194);
+        position: relative;
+        left: 120px;
+        top: 15px;
+    }
+
+    .cast{
+        height: 150px;
+        width: 1200px;
+       
+        border-bottom: 2px solid rgb(196, 194, 194);
+        position: relative;
+        left: 120px;
+        top: 30px;
+    }
+
+    #trailer:hover{
+        box-shadow: 10px 20px 20px gray;
+        transition: transform 0.2s;
+        transform: scale(1.01);
+        cursor: pointer;
+    }
+
+    .rate{
+      position: relative;
+      top: 95px;
+      left: 20px;
+    }
+
+  
+     
+
+</style> -->
+
+<style>
+
+body {
+    background-color: #0d0d0d;
+    color: #e6e6e6;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+}
+
+.navbar {
+    height: 10vh;
+    background: #1F1F1F;
+    color: #f1f1f1;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* .btn, #b {
+    background: #222;
+    color: #f2f2f2;
+    border: 1px solid #555;
+    padding: 8px 16px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover, #b:hover {
+    background: #444;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+} */
+
+.btn {
+      background-color: #E50914;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+  }
+
+  .btn:hover {
+      background-color: #B00610;
+  }
+
+.header {
+    height: 400px;
+    width: 100vw;
+    display: flex;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.hc1, .hc2 {
+    height: 100%;
+    background-color: #1a1a1a;
+}
+
+.hc1 {
+    width: 30%;
+    border-right: 1px solid #2c2c2c;
+}
+
+.hc2 {
+    width: 70%;
+}
+
+#i {
+    position: relative;
+    top: 40px;
+    left: 120px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+#title {
+    position: relative;
+    top: 70px;
+    left: 20px;
+    color: #ffffff;
+}
+
+ul {
+    display: flex;
+    position: relative;
+    top: 120px;
+    list-style: none;
+    color: #ccc;
+}
+
+#l2, #l3 {
+    position: relative;
+}
+
+#l2 { left: 30px; }
+#l3 { left: 70px; }
+
+.hc3 {
+    height: 30px;
+    width: 80px;
+    border: 1px solid #555;
+    background-color: #292929;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(200, 200, 200, 0.1);
+    position: relative;
+        top: 40px;
+        left: 20px;
+}
+
+#trailer {
+    position: relative;
+    top: 100px;
+    left: 20px;
+    border-radius: 5px;
+}
+
+/* #trailer:hover {
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+} */
+
+#trailer:hover{
+        box-shadow: 0 0 15px #B00610;
+        transition: transform 0.2s;
+        transform: scale(1.01);
+        cursor: pointer;
+    }
+
+    #b{
+        height: 50px;
+        width: 150px;
+        border-radius: 5px;
+        background-color: #E50914;
+        
+    }
+    #b1{
+        height: 50px;
+        width: 150px;
+        border-radius: 5px;
+    }
+
+.syno, .cast {
+    width: 1200px;
+    position: relative;
+    left: 120px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #1c1c1c;
+    border-bottom: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.04);
+}
+
+.syno { top: 15px; }
+.cast { top: 30px; }
+
+.rate {
+    position: relative;
+    top: 95px;
+    left: 20px;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+.navbar-brand{
+    color: white;
+}
+
+#book{
+    position: relative;
+    top: 100px;
+    left: 50px;
+    
+}
+
+#hel{
+    color: white;
+    position: absolute;
+    top: -140px;
+    left: 70px;
+}
+#ho{
+    color: white;
+    position: absolute;
+    top: -140px;
+}
+
+  
+</style>
+
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">Book My Show</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link" aria-current="page" href="{% url 'your_orders' %}">Your Orders</a>
+          </li>
+          
+          
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="header">
+
+    <div class="hc1">
+        <img id="i" src="{{name.image}}" alt="" height="330px" width="230px">
+    </div>
+
+    <div class="hc2">
+        <h1 id="title">{{name.title}}</h1>
+
+        <ul>
+            <li>{{name.duration_minutes}} min</li>
+            <li id="l2">{{name.genre}}</li>
+            <li id="l3">{{name.status}}</li>
+        </ul>
+
+        <div class="hc3">
+            <p id="lang">{{name.language}}</p>
+        </div>
+
+        <p class="rate"><strong>Ratings:</strong> ⭐️ <span>{{ratings|floatformat:1}}/10</span></p>
+
+       
+
+            <a id="trailer" href="{{name.thriller_url}}"><button id="b1">Watch Trailer</button></a>
+
+
+            <a id="book" href="{% url 'showtime' name.slug %}"><button id="b">Book tickets</button></a>
+
+            
+
+        
+    </div>
+
+  </div>
+
+  <div class="syno">
+    <h2>About The Movie</h2>
+    <p>{{name.synopsis}}</p>
+  </div>
+
+  <div class="cast">
+    <h2>Cast</h2>
+    <p>{{name.cast}}</p>
+  </div>
+
+
+  {% include 'reviews/review.html' %}
+
+
+
+
+
+
+{% endblock %}
